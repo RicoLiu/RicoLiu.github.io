@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | RicoLiu</title>
+  <title>Gap In Primes | RicoLiu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="RicoLiu">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+  <meta name="description" content="这两天在codewars上面刷题，遇到了这个题，题目意思是让你完成一个函数，这个函数有三个参数，分别是 g，m，n。你需要做的是找到 [m,n] 之间的所有素数，并且相邻的两个素数之差要等于 g，如果有满足条件的组合，则返回；否则，返回null。">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gap In Primes">
+<meta property="og:url" content="http://yoursite.com/2017/05/05/codewars/index.html">
 <meta property="og:site_name" content="RicoLiu">
+<meta property="og:description" content="这两天在codewars上面刷题，遇到了这个题，题目意思是让你完成一个函数，这个函数有三个参数，分别是 g，m，n。你需要做的是找到 [m,n] 之间的所有素数，并且相邻的两个素数之差要等于 g，如果有满足条件的组合，则返回；否则，返回null。">
+<meta property="og:updated_time" content="2017-05-05T12:48:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RicoLiu">
+<meta name="twitter:title" content="Gap In Primes">
+<meta name="twitter:description" content="这两天在codewars上面刷题，遇到了这个题，题目意思是让你完成一个函数，这个函数有三个参数，分别是 g，m，n。你需要做的是找到 [m,n] 之间的所有素数，并且相邻的两个素数之差要等于 g，如果有满足条件的组合，则返回；否则，返回null。">
   
     <link rel="alternative" href="/atom.xml" title="RicoLiu" type="application/atom+xml">
   
@@ -149,76 +154,240 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-codewars" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Gap In Primes
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/05/codewars/" class="archive-article-date">
+
+        
+        <a href="/2017/05/05/codewars/" class="archive-article-date">
   	<time datetime="2017-05-05T11:53:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-05</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/05/codewars/">Gap In Primes</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这两天在codewars上面刷题，遇到了这个题，题目意思是让你完成一个函数，这个函数有三个参数，分别是 g，m，n。你需要做的是找到 [m,n] 之间的所有素数，并且相邻的两个素数之差要等于 g，如果有满足条件的组合，则返回；否则，返回null。</p>
+<hr>
+<a id="more"></a>
+<p>这个题目乍一看上去没什么毛病，直接上代码：</p>
+<pre><code>function gap(g, m, n) {
+let arr = [];
+//将所有偶数剔除，不添加至数组中
+if (m % 2 === 0) {
+    m = m + 1;
+    while (m &lt;= n) {
+        arr.push(m);
+        m += 2;
+    }
+} else {
+    while (m &lt;= n) {
+        arr.push(m);
+        m += 2;
+    }
+}
+//过滤所有素数
+arr = arr.filter((element, index, array) =&gt; {
+    let start = 2;
+    while (start &lt;= Math.sqrt(element)) {
+        if (element % start++ &lt; 1) {
+            return false;
+        }
+    }
+    return element &gt; 1;
+});
+//找到符合条件的组合
+for (let i = 0; i &lt; arr.length - 1; i++) {
+    if (arr[i] + g === arr[i + 1]) {
+        return [arr[i], arr[i + 1]];
+    }
+}
+return null;
+</code></pre><p>}</p>
+<p>所有的基础测试用例都通过了，random test 也通过了，可是就毁在效率上了。（心累）</p>
+<p>自己想了想，没有什么优化思路，还是上网去查查资料吧。结果发现一个大神给出的优化思路：</p>
+<ul>
+<li><strong>Don’t use array to store prime numbers.</strong> You only need one previous prime to remember. And even if you ever do this, don’t remove elements from its middle, as shifting array contents is very costly.（第一个建议第一句话就是不要使用数组来存储素数，多么痛的领悟。最后又提到：转化数组的内容是恨消耗性能的。）</li>
+<li>Store number from expensive <code>Math.sqrt()</code>, don’t re-calculate it every iteration. Basically, this is rule for every loop - precalculate limits if possible.（使用 Math.sqrt() 这个函数，不要每次迭代的时候重新计算）</li>
+<li>…</li>
+</ul>
+<p>看看大神给出的高效率的解法：</p>
+<pre><code>function gap(gap, start, end) {
+//cut off odd gaps
+//bitwise AND can test least significant bit
+//odd numbers have 1, even have 0
+if (gap &amp; 1) { //is it odd?
+    if (start &gt; 2 || end &lt; gap + 2) return null; //check if 2 is in range
+    return isPrime(gap + 2) ? [2, gap + 2] : null; //check additionally the other part
+}
+var previous = null; //no initial value
+//loop over odd numbers to check for primes
+for (var current = start | 1; //set last bit to 1: /odd numbers stay same, even numbers become next odd
+    current &lt;= end;
+    current += 2 // skip any even number
+  ) {
+    if (isPrime(current)) {
+        if (current - previous === gap) //is it a match?
+            return [previous, current];
+        //no need for &quot;else&quot; here as the other branch has &quot;return&quot;
+        previous = current; // anyway, save it
+    }
+}
 
-        <div class="article-info info-on-right">
-          
-          
+return null; //no early return from loop = nothing matches
 
+
+/**
+    Tests if n is prime
+*/
+function isPrime(n) {
+    if (n &lt;= 6) //cut away small primes explicitly
+        return n === 2 || n === 3 || n === 5;
+    //cut away small divisors (2 and 3) explicitly
+    if (n &amp; 1 === 0 || //using bitwise AND for even numbers
+    n % 3 === 0) return false;
+
+    var limit = Math.floor(Math.sqrt(n)); //precalculate loop limit
+    // loop is checking every divisor using 6k ± 1 pattern
+    for (var t = 5; //start with 5, first 6k - 1 number
+     t &lt;= limit;
+     t += 6 //step by 6
+    ) {
+        if (n % t === 0 || //6k - 1
+        n % (t + 2) === 0) //6k + 1
+        return false;
+    }
+        return true;
+    }
+}
+console.log(&quot;&quot;); //this makes console output timestamp
+console.log(&quot;gap(8,3000000,4000000)&quot;, &quot;-&gt;&quot;, gap(8,3000000,4000000)); // ~5ms
+console.log(&quot;gap(120,3000000,4000000)&quot;, &quot;-&gt;&quot;, gap(120,3000000,4000000)); // ~600ms
+</code></pre><p>这个解题思路需要好好的消化下！</p>
+<p>附：<a href="https://codereview.stackexchange.com/questions/153288/codewars-gap-in-primes" target="_blank" rel="external">传送门</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/05/05/codewars/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/20/hello-world/" class="archive-article-date">
-  	<time datetime="2017-04-20T01:58:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-20</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/20/hello-world/">浅谈单例设计模式</a>
-    </h1>
+    <a href="/2017/04/20/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          浅谈单例设计模式
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+
+
+
+
+  
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -241,8 +410,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
