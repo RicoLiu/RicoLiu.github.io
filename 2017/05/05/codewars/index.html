@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/05/codewars/index.html">
 <meta property="og:site_name" content="RicoLiu">
 <meta property="og:description" content="这两天在codewars上面刷题，遇到了这个题，题目意思是让你完成一个函数，这个函数有三个参数，分别是 g，m，n。你需要做的是找到 [m,n] 之间的所有素数，并且相邻的两个素数之差要等于 g，如果有满足条件的组合，则返回；否则，返回null。">
-<meta property="og:updated_time" content="2017-05-05T12:48:03.000Z">
+<meta property="og:updated_time" content="2017-05-05T13:12:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Gap In Primes">
 <meta name="twitter:description" content="这两天在codewars上面刷题，遇到了这个题，题目意思是让你完成一个函数，这个函数有三个参数，分别是 g，m，n。你需要做的是找到 [m,n] 之间的所有素数，并且相邻的两个素数之差要等于 g，如果有满足条件的组合，则返回；否则，返回null。">
@@ -177,40 +177,7 @@
         <p>这两天在codewars上面刷题，遇到了这个题，题目意思是让你完成一个函数，这个函数有三个参数，分别是 g，m，n。你需要做的是找到 [m,n] 之间的所有素数，并且相邻的两个素数之差要等于 g，如果有满足条件的组合，则返回；否则，返回null。</p>
 <hr>
 <a id="more"></a>
-<p>这个题目乍一看上去没什么毛病，直接上代码：</p>
-<pre><code>function gap(g, m, n) {
-let arr = [];
-//将所有偶数剔除，不添加至数组中
-if (m % 2 === 0) {
-    m = m + 1;
-    while (m &lt;= n) {
-        arr.push(m);
-        m += 2;
-    }
-} else {
-    while (m &lt;= n) {
-        arr.push(m);
-        m += 2;
-    }
-}
-//过滤所有素数
-arr = arr.filter((element, index, array) =&gt; {
-    let start = 2;
-    while (start &lt;= Math.sqrt(element)) {
-        if (element % start++ &lt; 1) {
-            return false;
-        }
-    }
-    return element &gt; 1;
-});
-//找到符合条件的组合
-for (let i = 0; i &lt; arr.length - 1; i++) {
-    if (arr[i] + g === arr[i + 1]) {
-        return [arr[i], arr[i + 1]];
-    }
-}
-return null;
-</code></pre><p>}</p>
+<p>这个题目乍一看上去没什么毛病，直接上代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">gap</span>(<span class="params">g, m, n</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> arr = [];</div><div class="line">    <span class="comment">//将所有偶数剔除，不添加至数组中</span></div><div class="line">    <span class="keyword">if</span> (m % <span class="number">2</span> === <span class="number">0</span>) &#123;</div><div class="line">        m = m + <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span> (m &lt;= n) &#123;</div><div class="line">            arr.push(m);</div><div class="line">            m += <span class="number">2</span>;</div><div class="line">        &#125;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">while</span> (m &lt;= n) &#123;</div><div class="line">            arr.push(m);</div><div class="line">            m += <span class="number">2</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//过滤所有素数</span></div><div class="line">    arr = arr.filter(<span class="function">(<span class="params">element, index, array</span>) =&gt;</span> &#123;</div><div class="line">        <span class="keyword">let</span> start = <span class="number">2</span>;</div><div class="line">        <span class="keyword">while</span> (start &lt;= <span class="built_in">Math</span>.sqrt(element)) &#123;</div><div class="line">            <span class="keyword">if</span> (element % start++ &lt; 1) &#123;</div><div class="line">                return false;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return element &gt; 1;</div><div class="line">    &#125;);</div><div class="line">    //找到符合条件的组合</div><div class="line">    for (let i = 0; i &lt; arr.length - 1; i++) &#123;</div><div class="line">        if (arr[i] + g === arr[i + 1]) &#123;</div><div class="line">            return [arr[i], arr[i + 1]];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return null;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>所有的基础测试用例都通过了，random test 也通过了，可是就毁在效率上了。（心累）</p>
 <p>自己想了想，没有什么优化思路，还是上网去查查资料吧。结果发现一个大神给出的优化思路：</p>
 <ul>
@@ -218,59 +185,8 @@ return null;
 <li>Store number from expensive <code>Math.sqrt()</code>, don’t re-calculate it every iteration. Basically, this is rule for every loop - precalculate limits if possible.（使用 Math.sqrt() 这个函数，不要每次迭代的时候重新计算）</li>
 <li>…</li>
 </ul>
-<p>看看大神给出的高效率的解法：</p>
-<pre><code>function gap(gap, start, end) {
-//cut off odd gaps
-//bitwise AND can test least significant bit
-//odd numbers have 1, even have 0
-if (gap &amp; 1) { //is it odd?
-    if (start &gt; 2 || end &lt; gap + 2) return null; //check if 2 is in range
-    return isPrime(gap + 2) ? [2, gap + 2] : null; //check additionally the other part
-}
-var previous = null; //no initial value
-//loop over odd numbers to check for primes
-for (var current = start | 1; //set last bit to 1: /odd numbers stay same, even numbers become next odd
-    current &lt;= end;
-    current += 2 // skip any even number
-  ) {
-    if (isPrime(current)) {
-        if (current - previous === gap) //is it a match?
-            return [previous, current];
-        //no need for &quot;else&quot; here as the other branch has &quot;return&quot;
-        previous = current; // anyway, save it
-    }
-}
-
-return null; //no early return from loop = nothing matches
-
-
-/**
-    Tests if n is prime
-*/
-function isPrime(n) {
-    if (n &lt;= 6) //cut away small primes explicitly
-        return n === 2 || n === 3 || n === 5;
-    //cut away small divisors (2 and 3) explicitly
-    if (n &amp; 1 === 0 || //using bitwise AND for even numbers
-    n % 3 === 0) return false;
-
-    var limit = Math.floor(Math.sqrt(n)); //precalculate loop limit
-    // loop is checking every divisor using 6k ± 1 pattern
-    for (var t = 5; //start with 5, first 6k - 1 number
-     t &lt;= limit;
-     t += 6 //step by 6
-    ) {
-        if (n % t === 0 || //6k - 1
-        n % (t + 2) === 0) //6k + 1
-        return false;
-    }
-        return true;
-    }
-}
-console.log(&quot;&quot;); //this makes console output timestamp
-console.log(&quot;gap(8,3000000,4000000)&quot;, &quot;-&gt;&quot;, gap(8,3000000,4000000)); // ~5ms
-console.log(&quot;gap(120,3000000,4000000)&quot;, &quot;-&gt;&quot;, gap(120,3000000,4000000)); // ~600ms
-</code></pre><p>这个解题思路需要好好的消化下！</p>
+<p>看看大神给出的高效率的解法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">gap</span>(<span class="params">gap, start, end</span>) </span>&#123;</div><div class="line">    <span class="comment">//cut off odd gaps</span></div><div class="line">    <span class="comment">//bitwise AND can test least significant bit</span></div><div class="line">    <span class="comment">//odd numbers have 1, even have 0</span></div><div class="line">    <span class="keyword">if</span> (gap &amp; <span class="number">1</span>) &#123; <span class="comment">//is it odd?</span></div><div class="line">        <span class="keyword">if</span> (start &gt; <span class="number">2</span> || end &lt; gap + <span class="number">2</span>) <span class="keyword">return</span> <span class="literal">null</span>; <span class="comment">//check if 2 is in range</span></div><div class="line">        <span class="keyword">return</span> isPrime(gap + <span class="number">2</span>) ? [<span class="number">2</span>, gap + <span class="number">2</span>] : <span class="literal">null</span>; <span class="comment">//check additionally the other part</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">var</span> previous = <span class="literal">null</span>; <span class="comment">//no initial value</span></div><div class="line">    <span class="comment">//loop over odd numbers to check for primes</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> current = start | <span class="number">1</span>; <span class="comment">//set last bit to 1: /odd numbers stay same, even numbers become next odd</span></div><div class="line">    current &lt;= end;</div><div class="line">    current += <span class="number">2</span> <span class="comment">// skip any even number</span></div><div class="line">    ) &#123;</div><div class="line">        <span class="keyword">if</span> (isPrime(current)) &#123;</div><div class="line">            <span class="keyword">if</span> (current - previous === gap) <span class="comment">//is it a match?</span></div><div class="line">                <span class="keyword">return</span> [previous, current];</div><div class="line">            <span class="comment">//no need for "else" here as the other branch has "return"</span></div><div class="line">            previous = current; <span class="comment">// anyway, save it</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="literal">null</span>; <span class="comment">//no early return from loop = nothing matches</span></div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">        Tests if n is prime</div><div class="line">    */</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">isPrime</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (n &lt;= <span class="number">6</span>) <span class="comment">//cut away small primes explicitly</span></div><div class="line">            <span class="keyword">return</span> n === <span class="number">2</span> || n === <span class="number">3</span> || n === <span class="number">5</span>;</div><div class="line">        <span class="comment">//cut away small divisors (2 and 3) explicitly</span></div><div class="line">        <span class="keyword">if</span> (n &amp; <span class="number">1</span> === <span class="number">0</span> || <span class="comment">//using bitwise AND for even numbers</span></div><div class="line">        n % <span class="number">3</span> === <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line"></div><div class="line">        <span class="keyword">var</span> limit = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.sqrt(n)); <span class="comment">//precalculate loop limit</span></div><div class="line">        <span class="comment">// loop is checking every divisor using 6k ± 1 pattern</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> t = <span class="number">5</span>; <span class="comment">//start with 5, first 6k - 1 number</span></div><div class="line">        t &lt;= limit;</div><div class="line">        t += <span class="number">6</span> <span class="comment">//step by 6</span></div><div class="line">        ) &#123;</div><div class="line">            <span class="keyword">if</span> (n % t === <span class="number">0</span> || <span class="comment">//6k - 1</span></div><div class="line">            n % (t + <span class="number">2</span>) === <span class="number">0</span>) <span class="comment">//6k + 1</span></div><div class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">        &#125;</div><div class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">""</span>); <span class="comment">//this makes console output timestamp</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"gap(8,3000000,4000000)"</span>, <span class="string">"-&gt;"</span>, gap(<span class="number">8</span>,<span class="number">3000000</span>,<span class="number">4000000</span>)); <span class="comment">// ~5ms</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"gap(120,3000000,4000000)"</span>, <span class="string">"-&gt;"</span>, gap(<span class="number">120</span>,<span class="number">3000000</span>,<span class="number">4000000</span>)); <span class="comment">// ~600ms</span></div></pre></td></tr></table></figure></p>
+<p>这个解题思路需要好好的消化下！</p>
 <p>附：<a href="https://codereview.stackexchange.com/questions/153288/codewars-gap-in-primes" target="_blank" rel="external">传送门</a></p>
 
       
