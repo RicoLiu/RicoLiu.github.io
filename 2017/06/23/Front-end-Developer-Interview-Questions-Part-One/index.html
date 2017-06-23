@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | RicoLiu</title>
+  <title>Front-end-Developer-Interview-Questions (Part One) | RicoLiu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="RicoLiu">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+  <meta name="description" content="前端工作面试问题(一)">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Front-end-Developer-Interview-Questions (Part One)">
+<meta property="og:url" content="http://yoursite.com/2017/06/23/Front-end-Developer-Interview-Questions-Part-One/index.html">
 <meta property="og:site_name" content="RicoLiu">
+<meta property="og:description" content="前端工作面试问题(一)">
+<meta property="og:updated_time" content="2017-06-23T14:18:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RicoLiu">
+<meta name="twitter:title" content="Front-end-Developer-Interview-Questions (Part One)">
+<meta name="twitter:description" content="前端工作面试问题(一)">
   
     <link rel="alternative" href="/atom.xml" title="RicoLiu" type="application/atom+xml">
   
@@ -149,130 +154,183 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Front-end-Developer-Interview-Questions-Part-One" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Front-end-Developer-Interview-Questions (Part One)
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/23/Front-end-Developer-Interview-Questions-Part-One/" class="archive-article-date">
+
+        
+        <a href="/2017/06/23/Front-end-Developer-Interview-Questions-Part-One/" class="archive-article-date">
   	<time datetime="2017-06-23T12:54:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-23</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/23/Front-end-Developer-Interview-Questions-Part-One/">Front-end-Developer-Interview-Questions (Part One)</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前端工作面试问题-一"><a href="#前端工作面试问题-一" class="headerlink" title="前端工作面试问题(一)"></a>前端工作面试问题(一)</h1><hr>
+<a id="more"></a>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><ul>
+<li><p>你能描述当你制作一个网页的工作流程吗？</p>
+<p>  1.搭建环境，例如：npm init<br>  2.提取罗列出该网页应该具有哪些特性<br>  3.描述出改网页的UI流程图<br>  4.开始编码</p>
+</li>
+<li><p>假若你有 5 个不同的样式文件 (stylesheets), 整合进网站的最好方式是?</p>
+<p>  假设每一个样式文件作用于网站的不同模块。首先，我会为每一个样式文件添加命名前缀，以防样式名冲突。其次，我会将这些文件整合到一个文件中（gulp/webpack），以提高网站的下载速度。若有必要，可以启用CDN缓存加速。</p>
+</li>
+<li><p>你能描述渐进增强 (progressive enhancement) 和优雅降级 (graceful degradation) 之间的不同吗?</p>
+<p>  渐进增强：一开始就针对低版本浏览器进行构建页面，完成基本的功能，然后再针对高级浏览器进行效果、交互、追加功能达到更好的体验。（相当于向上兼容）</p>
+<p>  优雅降级：一开始就构建站点的完整功能，然后针对浏览器测试和修复。（相当于向下兼容）</p>
+</li>
+<li><p>你如何对网站的文件和资源进行优化？</p>
+<ul>
+<li>压缩并打包 JS/CSS/HTML 文件，可以使用 webpack 或者 gulp</li>
+<li>雪碧图（Image sprite），把许多背景图片整合到一张图片文件中</li>
+<li>gzip，在服务端开启 gzip 内容压缩</li>
+<li>Cache，在服务端为每个文件头指定 Cache-Control 属性</li>
+<li>CDN，把资源放到不同的域名上以减少最大连接数的限制</li>
+</ul>
+</li>
+<li><p>浏览器同一时间可以从一个域名下载多少资源？（有什么例外吗？）</p>
+<p>  一个域名同一时间可以发送6-8个请求，不同浏览各不相同。例外： HTTP/2 协议，浏览器只建立一个连接去下载资源</p>
+</li>
+<li><p>请说出三种减少页面加载时间的方法。(加载时间指感知的时间或者实际加载时间)</p>
+<ul>
+<li>将<code>&lt;link&gt;</code>放到<code>&lt;head&gt;</code>区域内，这会让浏览器首先加载样式文件</li>
+<li>将<code>&lt;script&gt;</code>放到文档的最底部，以防止浏览器进行渲染阻塞</li>
+<li>在 HTML5 中开启<code>async</code>属性，在<code>script</code>标签指定<code>async</code>属性来使得浏览器执行代码和解析页面在同一时间进行</li>
+<li>不要使用复杂的 css 查询，比如大量复杂的<code>#foo ul li .bar</code>会非常消耗浏览器解析的时间</li>
+</ul>
+</li>
+<li><p>什么是 FOUC (无样式内容闪烁)？你如何来避免 FOUC？</p>
+<p>  浏览器在外部样式加载之前渲染默认样式（无样式），从默认样式到外部样式的过渡状态称为 FOUC。引起原因：将<code>link</code>标签放到了<code>head</code>标签之后，或使用了<code>@import</code>，因为是异步加载样式列表的</p>
+</li>
+<li><p>什么是跨域资源共享 (CORS)？它用于解决什么问题？</p>
+<p>  跨域资源共享，CORS，是一个标准机制能够让你使用普通的 ajax 请求就能够得到不同域名下的资源。启用的方式很简单：在服务端为你的文件头添加如下属性</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Access-Control-Allow-Origin: http:<span class="comment">//my-domain-name.com</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/06/23/Front-end-Developer-Interview-Questions-Part-One/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/26/travis/" class="archive-article-date">
-  	<time datetime="2017-05-26T09:01:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-26</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/26/travis/">持续集成平台---travis</a>
-    </h1>
+    <a href="/2017/05/26/travis/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          持续集成平台---travis
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+
+
+
+
+  
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/05/codewars/" class="archive-article-date">
-  	<time datetime="2017-05-05T11:53:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/05/codewars/">Gap In Primes</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/20/hello-world/" class="archive-article-date">
-  	<time datetime="2017-04-20T01:58:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/20/hello-world/">浅谈单例设计模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -295,8 +353,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
