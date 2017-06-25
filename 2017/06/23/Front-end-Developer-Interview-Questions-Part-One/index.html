@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Front-end-Developer-Interview-Questions (Part One) | RicoLiu</title>
+  <title>Front-end-Developer-Interview-Questions | RicoLiu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前端工作面试问题(一)">
+  <meta name="description" content="前端工作面试问题">
 <meta name="keywords">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Front-end-Developer-Interview-Questions (Part One)">
+<meta property="og:title" content="Front-end-Developer-Interview-Questions">
 <meta property="og:url" content="http://yoursite.com/2017/06/23/Front-end-Developer-Interview-Questions-Part-One/index.html">
 <meta property="og:site_name" content="RicoLiu">
-<meta property="og:description" content="前端工作面试问题(一)">
-<meta property="og:updated_time" content="2017-06-23T14:18:27.000Z">
+<meta property="og:description" content="前端工作面试问题">
+<meta property="og:updated_time" content="2017-06-25T05:45:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Front-end-Developer-Interview-Questions (Part One)">
-<meta name="twitter:description" content="前端工作面试问题(一)">
+<meta name="twitter:title" content="Front-end-Developer-Interview-Questions">
+<meta name="twitter:description" content="前端工作面试问题">
   
     <link rel="alternative" href="/atom.xml" title="RicoLiu" type="application/atom+xml">
   
@@ -161,7 +161,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Front-end-Developer-Interview-Questions (Part One)
+      Front-end-Developer-Interview-Questions
     </h1>
   
 
@@ -174,20 +174,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="前端工作面试问题-一"><a href="#前端工作面试问题-一" class="headerlink" title="前端工作面试问题(一)"></a>前端工作面试问题(一)</h1><hr>
+        <h1 id="前端工作面试问题"><a href="#前端工作面试问题" class="headerlink" title="前端工作面试问题"></a>前端工作面试问题</h1><hr>
 <a id="more"></a>
 <h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><ul>
-<li><p>你能描述当你制作一个网页的工作流程吗？</p>
+<li><p><strong>你能描述当你制作一个网页的工作流程吗?</strong></p>
 <p>  1.搭建环境，例如：npm init<br>  2.提取罗列出该网页应该具有哪些特性<br>  3.描述出改网页的UI流程图<br>  4.开始编码</p>
 </li>
-<li><p>假若你有 5 个不同的样式文件 (stylesheets), 整合进网站的最好方式是?</p>
+<li><p><strong>假若你有 5 个不同的样式文件 (stylesheets), 整合进网站的最好方式是?</strong></p>
 <p>  假设每一个样式文件作用于网站的不同模块。首先，我会为每一个样式文件添加命名前缀，以防样式名冲突。其次，我会将这些文件整合到一个文件中（gulp/webpack），以提高网站的下载速度。若有必要，可以启用CDN缓存加速。</p>
 </li>
-<li><p>你能描述渐进增强 (progressive enhancement) 和优雅降级 (graceful degradation) 之间的不同吗?</p>
+<li><p><strong>你能描述渐进增强 (progressive enhancement) 和优雅降级 (graceful degradation) 之间的不同吗?</strong></p>
 <p>  渐进增强：一开始就针对低版本浏览器进行构建页面，完成基本的功能，然后再针对高级浏览器进行效果、交互、追加功能达到更好的体验。（相当于向上兼容）</p>
 <p>  优雅降级：一开始就构建站点的完整功能，然后针对浏览器测试和修复。（相当于向下兼容）</p>
 </li>
-<li><p>你如何对网站的文件和资源进行优化？</p>
+<li><p><strong>你如何对网站的文件和资源进行优化?</strong></p>
 <ul>
 <li>压缩并打包 JS/CSS/HTML 文件，可以使用 webpack 或者 gulp</li>
 <li>雪碧图（Image sprite），把许多背景图片整合到一张图片文件中</li>
@@ -196,10 +196,10 @@
 <li>CDN，把资源放到不同的域名上以减少最大连接数的限制</li>
 </ul>
 </li>
-<li><p>浏览器同一时间可以从一个域名下载多少资源？（有什么例外吗？）</p>
+<li><p><strong>浏览器同一时间可以从一个域名下载多少资源？（有什么例外吗？）</strong></p>
 <p>  一个域名同一时间可以发送6-8个请求，不同浏览各不相同。例外： HTTP/2 协议，浏览器只建立一个连接去下载资源</p>
 </li>
-<li><p>请说出三种减少页面加载时间的方法。(加载时间指感知的时间或者实际加载时间)</p>
+<li><p><strong>请说出三种减少页面加载时间的方法。(加载时间指感知的时间或者实际加载时间)</strong></p>
 <ul>
 <li>将<code>&lt;link&gt;</code>放到<code>&lt;head&gt;</code>区域内，这会让浏览器首先加载样式文件</li>
 <li>将<code>&lt;script&gt;</code>放到文档的最底部，以防止浏览器进行渲染阻塞</li>
@@ -207,12 +207,59 @@
 <li>不要使用复杂的 css 查询，比如大量复杂的<code>#foo ul li .bar</code>会非常消耗浏览器解析的时间</li>
 </ul>
 </li>
-<li><p>什么是 FOUC (无样式内容闪烁)？你如何来避免 FOUC？</p>
+<li><p><strong>什么是 FOUC (无样式内容闪烁)？你如何来避免 FOUC？</strong></p>
 <p>  浏览器在外部样式加载之前渲染默认样式（无样式），从默认样式到外部样式的过渡状态称为 FOUC。引起原因：将<code>link</code>标签放到了<code>head</code>标签之后，或使用了<code>@import</code>，因为是异步加载样式列表的</p>
 </li>
-<li><p>什么是跨域资源共享 (CORS)？它用于解决什么问题？</p>
+<li><p><strong>什么是跨域资源共享 (CORS)？它用于解决什么问题?</strong></p>
 <p>  跨域资源共享，CORS，是一个标准机制能够让你使用普通的 ajax 请求就能够得到不同域名下的资源。启用的方式很简单：在服务端为你的文件头添加如下属性</p>
   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Access-Control-Allow-Origin: http:<span class="comment">//my-domain-name.com</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="HTML-问题"><a href="#HTML-问题" class="headerlink" title="HTML 问题"></a>HTML 问题</h2><ul>
+<li><p><strong><code>doctype</code>(文档类型) 的作用是什么？</strong></p>
+<p>  DTD(Document Type Definition)—文档类型定义<br>  通过在HTML文件顶部定义<code>&lt;!DOCTYPE html&gt;</code>，来告诉浏览器当前正在使用的浏览器版本，并且它会使浏览器以标准的模式解析页面。如果不声明<code>&lt;!DOCTYPE html&gt;</code>可能会在一些老浏览器导致怪异模式。</p>
+</li>
+<li><p><strong>HTML 和 XHTML 有什么区别？</strong></p>
+<p>  XHTML 表示可扩展的 HTML.如果页面使用 ‘application/xhtml+xml’会使得浏览器认为该文件是一个 XML 文件，在 IE 6,7,8会产生一些不可预知的错误。</p>
+</li>
+<li><p><strong>请描述 <code>cookies</code>、<code>sessionStorage</code> 和 <code>localStorage</code> 的区别</strong></p>
+<p>  Cookie</p>
+<ul>
+<li>可以通过设置<code>http-only</code>属性来控制 cookie 是否能通过 javascript 进行读取</li>
+<li>最大只有 4KB</li>
+<li>每一个域名有限制的数量</li>
+<li>通过数据包在 header 进行传递</li>
+<li>能够被服务端发送或者设置</li>
+</ul>
+<p>Session 和 local storage 都是 HTML5 的 API ，都被统称为 web storage.当 session 清除时，session storage 会删除所有的数据，而 local storage 不会。Web storage 在每一个域名中的存储大小为 5MB—10MB</p>
+</li>
+<li><p><strong>请解释 <code>&lt;script&gt;</code>、<code>&lt;script async&gt;</code> 和 <code>&lt;script defer&gt;</code> 的区别</strong></p>
+<p>  <code>&lt;script&gt;</code> - 浏览器会立即加载并执行相应的脚本。也就是说在渲染script标签之后的文档之前，不等待后续加载的文档元素，读到就开始加载和执行，此举会阻塞后续文档的加载<br>  <code>&lt;script async&gt;</code> - 有了 async 属性，表示后续文档的加载和渲染与js脚本的加载和执行是并行进行的，即异步执行<br>  <code>&lt;script defer&gt;</code> - 有了 defer 属性，加载后续文档的过程和js脚本的加载(此时仅加载不执行)是并行进行的(异步)，js脚本的执行需要等到文档所有元素解析完成之后，DOMContentLoaded 事件触发执行之前</p>
+</li>
+</ul>
+<h2 id="CSS-问题"><a href="#CSS-问题" class="headerlink" title="CSS 问题"></a>CSS 问题</h2><ul>
+<li><p><strong>请解释浮动 (Floats) 及其工作原理</strong></p>
+<p>  浮动元素会脱离文档的普通流,根据<code>float</code>的值向左或向右移动,直到它的外边界碰到父元素的内边界或另一个浮动元素的外边界为止。由于浮动框不在文档的普通流中,所以文档的普通流中的块级元素表现得就像浮动元素不存在一样。<br>  常见的解决方案：</p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.cle</span><span class="selector-tag">arfix</span><span class="selector-pseudo">:after</span>&#123;</div><div class="line">  <span class="attribute">display</span>:block; </div><div class="line">  <span class="attribute">content</span>:<span class="string">''</span>; </div><div class="line">  <span class="attribute">clear</span>:both; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>使用 CSS 预处理器的优缺点有哪些？</strong></p>
+<p>  SCSS<br>  优势：为书写模块化的 CSS 提供了更多种的方式，比如：继承、变量…<br>  劣势：额外的学习成本，需要设置工作环境</p>
+</li>
+<li><p><strong>请解释你对盒模型的理解，以及如何在 CSS 中告诉浏览器使用不同的盒模型来渲染你的布局</strong></p>
+<p>  盒模型标示元素是由四个部分组成：margin. border, padding, content.</p>
+<ul>
+<li>Margin - 指从自身边框到另一个容器边框之间的距离，就是容器外距离</li>
+<li>border - 在 margin 和 padding 之间的一层</li>
+<li>padding - 指自身边框到自身内部另一个容器边框之间的距离，就是容器内距离</li>
+<li><p>content - 容器的内容</p>
+<p>定义<code>box-sizing</code>时，可以使用<code>content-box</code>和<code>border-box</code>来转化盒模型</p>
+</li>
+<li>content-box - 宽度和高度分别应用到元素的内容框，在宽度和高度之外绘制元素的内边距和边框</li>
+<li>border-box - 为元素设定的宽度和高度决定了元素的边框盒。就是说，为元素指定的任何内边距和边框都将在已设定的宽度和高度内进行绘制。通过从已设定的宽度和高度分别减去边框和内边距才能得到内容的宽度和高度。</li>
+</ul>
+</li>
+<li><p><strong>为什么响应式设计 (responsive design) 和自适应设计 (adaptive design) 不同？</strong></p>
+<p>  响应式设计 - 用一套布局适应多个设备<br>  优势：易于维护<br>  劣势：屏幕尺寸有很多，只能提供一个基本舒适的，并不是最好的用户体验<br>  自适应设计 - 用多个布局适应多个设备<br>  优势：在不同的设备上面能够提供最好的体验<br>  劣势：维护成本太高</p>
 </li>
 </ul>
 
