@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/06/23/Front-end-Developer-Interview-Questions-Part-One/index.html">
 <meta property="og:site_name" content="RicoLiu">
 <meta property="og:description" content="前端工作面试问题">
-<meta property="og:updated_time" content="2017-06-25T05:45:16.000Z">
+<meta property="og:updated_time" content="2017-06-25T12:40:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Front-end-Developer-Interview-Questions">
 <meta name="twitter:description" content="前端工作面试问题">
@@ -262,6 +262,39 @@
 <p>  响应式设计 - 用一套布局适应多个设备<br>  优势：易于维护<br>  劣势：屏幕尺寸有很多，只能提供一个基本舒适的，并不是最好的用户体验<br>  自适应设计 - 用多个布局适应多个设备<br>  优势：在不同的设备上面能够提供最好的体验<br>  劣势：维护成本太高</p>
 </li>
 </ul>
+<h2 id="JS-问题"><a href="#JS-问题" class="headerlink" title="JS 问题"></a>JS 问题</h2><ul>
+<li><p><strong>请解释 JavaScript 中 <code>this</code> 是如何工作的</strong></p>
+<p>  <code>this</code> 指向当前的作用域，构造函数中的this指向新创建的对象</p>
+</li>
+<li><p><strong>请解释原型继承 (prototypal inheritance) 的原理</strong></p>
+<p>  当查找一个对象的属性时，JavaScript 会<strong>向上</strong>遍历原型链，直到找到给定名称的属性为止<br>  ES5</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Person = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> John = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>)</span>&#123;</div><div class="line">    Person.call(<span class="keyword">this</span>, name);</div><div class="line">&#125;</div><div class="line"></div><div class="line">John.prototype = <span class="built_in">Object</span>.create(Person.prototype); </div><div class="line"></div><div class="line">John.prototype.constructor = Person;</div></pre></td></tr></table></figure>
+<p>  ES6</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</div><div class="line">    <span class="keyword">constructor</span>(name)&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">John</span> <span class="keyword">extends</span> <span class="title">Person</span></span>&#123;</div><div class="line">    <span class="keyword">constructor</span>(name)&#123;</div><div class="line">        suepr(name);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>什么是闭包 (closure)，如何使用它，为什么要使用它</strong></p>
+<p>  闭包的定义（几本书中不同的定义）：</p>
+<ol>
+<li><p>闭包是指有权访问另一个函数作用域中的变量的函数</p>
+</li>
+<li><p>函数对象可以通过作用域关联起来，函数体内的变量都可以保存在函数作用域内，所有的javascirpt函数都是闭包</p>
+</li>
+<li><p>闭包是基于词法作用域书写代码时所产生的必然结果</p>
+</li>
+<li><p>函数可以通过作用域链相互关联起来，函数内部的变量可以保存在其他函数作用域内，这种特性在计算机科学文献中称为闭包</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="number">5</span>; i++) &#123;</div><div class="line">    setTimeout( <span class="function"><span class="keyword">function</span> <span class="title">timer</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(i);  </div><div class="line">    &#125;, <span class="number">1000</span> );</div><div class="line">&#125;</div><div class="line"><span class="comment">//输出结果是: 5个6</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="number">5</span>; i++) &#123;</div><div class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>&#123;</div><div class="line">        setTimeout( <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">              <span class="built_in">console</span>.log(i);</div><div class="line">          &#125;,  <span class="number">1000</span> );</div><div class="line">    &#125;)(i);</div><div class="line"> &#125;</div><div class="line"> <span class="comment">//输出：1-5 每循环一次回调中都引用了参数i, 而在上一个循环中，每个回调引用的都是一个变量i</span></div><div class="line"></div><div class="line"> <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= <span class="number">5</span>; i++) &#123;</div><div class="line">    setTimeout( <span class="function"><span class="keyword">function</span> <span class="title">timer</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(i);  </div><div class="line">    &#125;, <span class="number">1000</span> );</div><div class="line">&#125;</div><div class="line"><span class="comment">//改写 let创建局部作用域</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p><strong>请指出 JavaScript 宿主对象 (host objects) 和原生对象 (native objects) 的区别？</strong></p>
+<p>  宿主对象 - 浏览器特定的特征，Chrome 和 IE 的 DOM 对象就不一样<br>  原生对象 - javascript 的核心特征，比如 array, object</p>
+</li>
+<li><p><strong>请尽可能完整得描述从输入 URL 到整个网页加载完毕及显示在屏幕上的整个流程</strong></p>
+<p>  假定只有 HTTP 请求，没有代理<br>  1.浏览器查询缓存，如果文件存在于缓存之中并且没有过期，则渲染<br>  2.操作系统通过 DNS 查询已给出 URL 的 IP 地址，并且将其返回给浏览器<br>  3.如果这个 URL 存在，浏览器与服务器建立 TCP 连接<br>  4.浏览器向服务器发送 HTTP 请求<br>  5.服务器解析 HTTP 请求，根据是否设置<code>keep-alive</code>来决定是否关闭 TCP 连接<br>  6.浏览器解析 HTTP 状态码，并且根据状态码来进行具体的渲染流程</p>
+</li>
+</ul>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="https://segmentfault.com/a/1190000009886713?f=tt&amp;hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io" target="_blank" rel="external">https://segmentfault.com/a/1190000009886713?f=tt&amp;hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io</a></p>
+<p><a href="http://andrewyan.logdown.com/posts/643979-front-end-job-interview-questions" target="_blank" rel="external">http://andrewyan.logdown.com/posts/643979-front-end-job-interview-questions</a></p>
 
       
 
